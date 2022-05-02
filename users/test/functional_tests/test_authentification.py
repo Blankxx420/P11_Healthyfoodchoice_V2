@@ -42,7 +42,7 @@ class SeleniumRegisterTest(StaticLiveServerTestCase):
         # Click on button which registers + login automatically
         self.driver.execute_script("window.scrollTo(0,900)")
         WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable(
-            (By.XPATH, '//*[@id="register"]/div/form/button'))).click()
+            (By.XPATH, '//*[@id="register"]/div/form/button'))).click(
 
         # Checks if icon "mon_compte" in DOM, means logged in
         self.driver.find_element(By.ID, "mon_compte")
