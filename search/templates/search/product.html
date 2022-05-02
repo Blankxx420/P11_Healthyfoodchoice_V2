@@ -1,0 +1,84 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<!-- Products -->
+  <header class="products" style="
+  background: linear-gradient(
+          to bottom,
+          rgba(92, 77, 66, 0.8) 0%,
+      rgba(92, 77, 66, 0.8) 100%), url({{ product.url_image }});
+    background-repeat: no-repeat;
+          background-position: center;
+          background-size: contain;
+          padding-top: calc(10rem - 2.5rem);">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center justify-content-center text-center">
+        <div class="col-lg-10 align-self-end">
+          <h2 class="text-white font-weight-bold">{{ product.name }}</h2>
+        </div>
+      </div>
+    </div>
+  </header>
+  <section class="page-section bg-light" id="products">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-md-12">
+          <div class="card mx-1 my-3 shadow p-3 mb-5 bg-white rounded">
+            {% if product.nutrition_score == "A" %}
+            <img
+              class="card-img-top"
+              src="{% static 'dist/assets/img/nutriscore-A.png' %}"
+              alt="logo nutriscore A"
+            />
+            {% elif product.nutrition_score == "B" %}
+            <img
+              class="card-img-top"
+              src="{% static 'dist/assets/img/nutriscore-B.png' %}"
+              alt="logo nutriscore B"
+            />
+            {% elif product.nutrition_score == "C" %}
+            <img
+              class="card-img-top"
+              src="{% static 'dist/assets/img/nutriscore-C.png' %}"
+              alt="logo nutriscore C"
+            />
+            {% elif product.nutrition_score == "D" %}
+            <img
+              class="card-img-top"
+              src="{% static 'dist/assets/img/nutriscore-D.png' %}"
+              alt="logo nutriscore D"
+            />
+            {% elif product.nutrition_score == "E" %}
+            <img
+              class="card-img-top"
+              src="{% static 'dist/assets/img/nutriscore-E.png' %}"
+              alt="logo nutriscore E"
+            />
+            {% endif %}
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-12">
+          <div class="card mx-1 my-3 shadow p-3 mb-5 bg-white rounded">
+            <div class="card-body text-center">
+              <h4>Repères nutritionnels pour 100g</h4>
+              <ul class="list-unstyled">
+                <li>Energie : {{ product.energy_100g }}</li>
+                <li>Sucres : {{ product.sugars_100g }}</li>
+                <li>Sodium : {{ product.sodium_100g }}</li>
+                <li>Graisses : {{ product.fat_100g }}</li>
+                <li>Sel : {{ product.salt_100g }}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12 col-md-12 text-center">
+          <a href="{{ product.url }}" class="btn btn-primary" target="_blank"
+            >Voir la fiche d'Openfoodfacts</a
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock content%}

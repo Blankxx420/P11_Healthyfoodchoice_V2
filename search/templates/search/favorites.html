@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+     <header class="masthead">
+            <div class="container px-4 px-lg-5 h-100">
+                <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+                    <div class="col-lg-8 align-self-end">
+                        <h1 class="text-white font-weight-bold">Mes Produits Favoris</h1>
+                        <hr class="divider"/>
+                    </div>
+                </div>
+            </div>
+     </header>
+     <section class="page-section bg-light" id="products">
+  <div class="container">
+    <div class="row">
+      {% if favorites %}
+      <div class="col-12">
+        <h3 class="text-center">
+          Voici les substituts que vous avez enregistré :
+        </h3>
+      </div>
+      {% for favorite in favorites %}
+      <div class="col-lg-4 col-md-12">
+        <div class="card mx-1 my-3 shadow p-3 mb-5 bg-white rounded">
+          <img class="card-img-top" src="{{ favorite.substitute_id.url_image }}" alt="image du substitut"/>
+          <span class="card-score-{{ favorite.substitute_id.nutrition_score }}">
+          {{favorite.substitute_id.nutrition_score }}
+          </span>
+          <div class="card-body text-center">
+            <a href="{% url 'search:product' favorite.substitute_id.id %}" target="_blank">
+              <p class="card-title">{{ favorite.substitute_id.name }}</p>
+            </a>
+            <p>est un substitut pour</p>
+            <a href="{% url 'search:product' favorite.product_id.id %}" target="_blank">
+              <p class="card-title">{{ favorite.product_id.name }}</p>
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %} {% else %}
+      <div class="text-center col-12">
+        Vous n'avez pas encore enregistré des substituts en favoris. Une
+        recherche en tête ?
+        <div class="p-3">
+          <a href="{% url 'search:home' %}" class="btn btn-primary">C'est par ici.</a>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

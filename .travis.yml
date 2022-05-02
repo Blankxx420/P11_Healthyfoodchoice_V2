@@ -1,0 +1,26 @@
+language: python
+python:
+  - "3.9"
+
+addons:
+  firefox: latest
+
+# safelist (indicate the only branches to check)
+branches:
+  only:
+    - master
+
+install:
+  - pip install -r requirements.txt
+
+before_script:
+   - install-webdrivers --path webdrivers
+env:
+  global:
+    - DJANGO_SETTINGS_MODULE="djangoProject.settings.travis"
+
+services:
+  - postgresql
+
+script:
+  - python manage.py test

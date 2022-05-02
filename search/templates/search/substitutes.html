@@ -1,0 +1,76 @@
+{% extends 'base.html' %} {% block content %} {% load static %}
+
+<!-- Substitutes -->
+<header class="products" style="
+  background: linear-gradient(
+          to bottom,
+          rgba(92, 77, 66, 0.8) 0%,
+      rgba(92, 77, 66, 0.8) 100%), url({{ product.url_image }});
+    background-repeat: no-repeat;
+          background-position: center;
+          background-size: contain;
+          padding-top: calc(10rem - 2.5rem);">
+  <div class="container h-100">
+    <div
+      class="row h-100 align-items-center justify-content-center text-center">
+      <div class="col-lg-10 align-self-end">
+        <h2 class="text-white font-weight-bold">{{ product.name }}</h2>
+      </div>
+    </div>
+  </div>
+</header>
+<section class="page-section bg-light" id="products">
+  <div class="container">
+    <div class="row">
+      {% if substitutes %}
+      <div class="col-12">
+        <h3 class="text-center">
+          Voici les substituts possibles pour ce produit :
+        </h3>
+      </div>
+      {% for substitute in substitutes %}
+      <div class="col-lg-4 col-md-12">
+        <div class="card mx-1 my-3 shadow p-3 mb-5 bg-white rounded">
+          <img
+            class="card-img-top"
+            src="{{ substitute.url_image_small }}"
+            alt="image du produit"/>
+          <span class="card-score-{{ substitute.nutrition_score }}">
+          {{ substitute.nutrition_score }}
+            </span>
+          <div class="card-body text-center">
+            <a href="{% url 'search:product' substitute.id %}" target="_blank">
+              <p class="card-title">{{ substitute.name }}</p>
+            </a>
+            {% if user.is_authenticated %}
+            <a href= "{% url 'search:save_favorite' product.id substitute.id %}" class="btn btn-primary"> Sauvegarder </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %} {% else %}
+
+      <div class="text-center col-12">
+        Désolé, nous n'avons pas trouvé de substitut à ce produit. Une autre
+        recherche en tête ?
+        <div class="p-3">
+          <a href="{% url 'search:home' %}" class="btn btn-primary"
+            >C'est par ici.</a
+          >
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  {% if user.is_authenticated == False %}
+  <p class="pt-5 text-center">
+    Vous pouvez enregistrer des substituts sur votre espace "Mes aliments".
+  </p>
+  <div class="text-center">
+    <a href="{% url 'login' %}" class="btn btn-primary">Me connecter</a>
+    <a href="{% url 'register' %}" class="btn btn-secondary">M'inscrire</a>
+  </div>
+  {% endif %}
+</section>
+
+{% endblock content %}
