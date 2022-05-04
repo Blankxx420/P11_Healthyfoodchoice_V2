@@ -8,7 +8,7 @@ addons:
 # safelist (indicate the only branches to check)
 branches:
   only:
-    - master
+    - main
 
 install:
   - pip install -r requirements.txt
