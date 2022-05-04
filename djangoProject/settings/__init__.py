@@ -164,6 +164,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 if ENV == "production":
