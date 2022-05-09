@@ -13,7 +13,7 @@ class TestViews(TestCase):
             password="password1234",
         )
         Product.objects.create(id=713, name="Nutella biscuits", nutrition_score="E")
-        self.url_home = reverse('search:home')
+        self.url_home = reverse('search:homes')
         self.url_product = reverse('search:product', args=[713])
         self.url_products = reverse('search:products')
         self.url_substitutes = reverse('search:substitutes', args=[713])
