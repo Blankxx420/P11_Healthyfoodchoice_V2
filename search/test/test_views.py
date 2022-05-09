@@ -74,6 +74,8 @@ class TestViews(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "search/favorites.html")
+        if not response:
+            return self.user
 
     def test_legal_notice_page(self):
         response = self.client.get(self.url_legal_notice)
