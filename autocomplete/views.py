@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 
-from search.models import Product
+from search.models.product import Product
 
 
 def complete(request):
