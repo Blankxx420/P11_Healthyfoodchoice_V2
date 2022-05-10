@@ -1,5 +1,6 @@
 from django.db import models
 from .category import Categories
+from search.managers import ProductManager
 
 
 class Product(models.Model):
@@ -16,6 +17,7 @@ class Product(models.Model):
     fat_100g = models.FloatField(default=0, null=True)
     salt_100g = models.FloatField(default=0, null=True)
     category = models.ManyToManyField(Categories)
+    objects = ProductManager()
 
     def __str__(self):
         return f"{self.name}, {self.nutrition_score}"
