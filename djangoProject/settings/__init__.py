@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'search',
     'users',
+    'autocomplete',
     'crispy_forms',
 ]
 

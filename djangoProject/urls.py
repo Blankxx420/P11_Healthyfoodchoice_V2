@@ -18,6 +18,7 @@ from django.urls import path, include
 from django.contrib.auth import views as auth_views
 import search.urls
 from users import views as users_views
+from autocomplete import views
 
 
 urlpatterns = [
@@ -60,4 +61,9 @@ urlpatterns = [
         ),
         name="password_reset_complete",
     ),
+    path("autocomplete/",
+         include("autocomplete.urls",
+                 namespace="autocomplete",
+                 ),
+         ),
 ]
