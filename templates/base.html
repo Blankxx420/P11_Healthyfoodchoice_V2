@@ -23,7 +23,7 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static 'dist/css/styles.css'%}" rel="stylesheet" />
     <!-- jQueryUI -->
-        <link href="{% static 'dist/css/autocomplete.css' %}" rel="stylesheet" />
+        <link href="{% static 'dist/css/auto_complete.css' %}" rel="stylesheet" />
     </head>
     <body id="page-top">
     <!-- Navigation-->
@@ -112,6 +112,6 @@
           integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <script>
             const autocomplete_url = "{% url 'autocomplete:complete' %}"; </script>
-        <script src="{% static 'dist/js/autocomplete.js' %}"></script>
+        <script src="{% static 'dist/js/auto_complete.js' %}"></script>
     </body>
 </html>
