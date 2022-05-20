@@ -12,8 +12,8 @@ def complete(request):
     products = [
         {
             # how display name according to length
-            "name": product.name[:30] + "..."
-            if len(product.name) > 33
+            "name": product.name[:60] + "..."
+            if len(product.name) > 63
             else product.name,
             "id": product.id,
         }

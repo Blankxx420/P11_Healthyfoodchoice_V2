@@ -2,13 +2,23 @@ $(".autocomplete_search").autocomplete({
     minLength: 2,
     source:
         function (request, response) {
+            const specialChars = `\`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~`;
             $.getJSON(autocomplete_url, { term: request.term }, function (data) {
                 response($.map(data, function (item) {
-                    return {
-                        label: item.name,
-                        value: item.name,
-                        id: item.id,
-                    };
+                    if (containsSpecialChars(item.name))
+                        return {
+                            label: item.name,
+                            value: item.name.replace(specialChars),
+
+                            id: item.id,
+                        };
+                    else {
+                        return {
+                            label: item.name,
+                            value: item.name,
+                            id: item.id,
+                        }
+                    }
                 }));
             });
         },
@@ -17,3 +27,12 @@ $(".autocomplete_search").autocomplete({
     }
 });
 
+function containsSpecialChars(str) {
+    const specialChars = `\`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~`;
+
+    return specialChars.split('').some(specialChar => {
+        return !!str.includes(specialChar);
+
+
+    });
+}
