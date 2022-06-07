@@ -28,7 +28,11 @@ class SeleniumRegisterTest(StaticLiveServerTestCase):
 
     def test_reset_password(self):
         self.driver.get("%s%s" % (self.live_server_url, "/login/"))
-        self.driver.find_element_by_link_text("Mot de passe oublié ?").click()
+        self.driver.execute_script("window.scrollTo(0,900)")
+        WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable(
+            (By.XPATH, '//*[@id="login"]/div/form/small/a'))).click()
         email_input = self.driver.find_element_by_id("id_email")
         email_input.send_keys("user1@gmail.com")
-        self.driver.find_element_by_class_name("btn").click()
+        self.driver.execute_script("window.scrollTo(0,900)")
+        WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable(
+            (By.XPATH, '//*[@id="login"]/div/form/button'))).click()
