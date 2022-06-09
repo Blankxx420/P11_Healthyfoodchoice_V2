@@ -45,9 +45,12 @@ class TestViews(TestCase):
 
     def test_substitutes_page(self):
         response = self.client.get(self.url_substitutes)
-
+        Product.objects.create(id=502, name="Diet nature digestive sin azúcares", nutrition_score="B")
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "search/substitutes.html")
+        self.assertEqual(response.context["product"], {'product': '<Product: Nutella biscuits, E>'})
+        self.assertEqual(response.context["substitutes"], {'substitute': '<Product: Diet nature digestive sin azúcares, B>'})
+
 
     def test_save_substitute_as_favorite_success(self):
         self.client.force_login(self.user)
