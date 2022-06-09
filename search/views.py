@@ -54,7 +54,7 @@ def substitutes(request, product_id):
     product_query = Product.objects.get(pk=product_id)
 
     # Find the category of the product
-    product_query_cat = Categories.objects.filter(product__id=product_query.id + 1)
+    product_query_cat = Categories.objects.filter(product__id=product_query.id)
 
     # Find 9 products with better nutrition_score in the same category
     substitutes_prod = (
